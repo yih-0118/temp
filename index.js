@@ -1,21 +1,7 @@
-const {
-    Client,
-    GatewayIntentBits,
-    EmbedBuilder,
-    REST,
-    Routes,
-    ApplicationCommandOptionType,
-    ActionRowBuilder,
-    StringSelectMenuBuilder,
-    ButtonBuilder,
-    ButtonStyle
-} = require('discord.js');
+const {Client,GatewayIntentBits,EmbedBuilder,REST,Routes,ApplicationCommandOptionType,ActionRowBuilder,StringSelectMenuBuilder,ButtonBuilder,ButtonStyle} = require('discord.js');
 const fs = require('fs');
 const path = require('path');
-const {
-    token
-} = require('./config.json');
-
+const {token} = require('./config.json');
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -1125,8 +1111,7 @@ async function startQuiz(interaction, selectedValue, category, direction) {
     async function askNextQuestion(index) {
         if (index >= totalQuestions) {
             const resultEmbed = new EmbedBuilder()
-                .setTitle('測驗結果')
-                .setDescription(`總共 ${totalQuestions} 題，你答對了 ${correctAnswers} 題。`)
+                .setTitle('測驗結束')
                 .setColor(`#${getRandomColor()}`);
 
             await interaction.followUp({
@@ -1173,7 +1158,7 @@ async function startQuiz(interaction, selectedValue, category, direction) {
             filter,
             componentType: 'BUTTON',
             max: 1,
-            time: 6500
+            time: 7000
         });
 
         collector.on('collect', async i => {
